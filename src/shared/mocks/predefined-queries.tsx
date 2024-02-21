@@ -1,4 +1,6 @@
-export const Queries = [
+import { IQuery } from "../models/TableStructure";
+
+export const Queries: IQuery[] = [
   {
     query: "select * from customers;",
     index: 1,

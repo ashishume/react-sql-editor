@@ -6,6 +6,9 @@
       gap: 10px;
       margin-top: 10px;
       &--left {
+        display: flex;
+        flex-direction: column;
+        flex: 5;
         .sql-title {
           font-size: 16px;
           font-weight: 600;
