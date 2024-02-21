@@ -1,0 +1,28 @@
+.container {
+  &__content {
+    &__text-editor {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      &--left {
+        .sql-title {
+          font-size: 16px;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+        &--query-actions {
+          align-self: flex-end;
+          margin-top: 14px;
+        }
+        &--table-output{
+        }
+      }
+      &--right {
+        flex: 2;
+      }
+    }
+    &__table-structure {
+    }
+  }
+}

@@ -14,9 +14,11 @@ import {
 const TableStructure = ({
   tableData,
   heading,
+  minWidth,
 }: {
   tableData: any;
-  heading: string;
+  heading?: string;
+  minWidth: number;
 }) => {
   const header = Object.keys(tableData[0]);
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -30,9 +32,9 @@ const TableStructure = ({
   }));
   return (
     <div className={style["container"]}>
-      <h2>{heading}</h2>
+      {heading && <h2>{heading}</h2>}
       <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
-        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+        <Table stickyHeader sx={{ minWidth }} aria-label="simple table">
           <TableHead>
             <TableRow>
               {header.map((cell) => {
