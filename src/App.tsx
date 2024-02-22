@@ -1,9 +1,4 @@
 import TableStructure from "./components/table-structure";
-import Territory from "./mock-data/territory.json";
-import Customers from "./mock-data/customers.json";
-import CustomersLimit from "./mock-data/customer-limit.json";
-import Orders from "./mock-data/orders.json";
-import Products from "./mock-data/products.json";
 import TextEditor from "./components/sql-text-editor";
 import { useState } from "react";
 import "./App.scss";
@@ -11,42 +6,42 @@ import PredefinedQueries from "./components/predefined-queries";
 import { IQuery } from "./shared/models/TableStructure";
 import AvailableTableList from "./components/AvailableTables";
 import ActionButtons from "./components/ActionButtons";
+import { AvailableTable } from "./shared/mocks/TableData";
 function App() {
-  const [query, setQuery] = useState({} as IQuery | null);
+  const [query, setQuery] = useState("");
   const [tableData, setTableData] = useState([] as any);
 
+  /**
+   * on input field change change the value
+   * @param event
+   */
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setQuery({
-      query: event.target.value,
-      index: 10, // some random number
-    });
+    setQuery(event.target.value);
   }
+
+  /**
+   * set the value of the predefined queries to the input field
+   * @param value
+   */
   function handleAvailableQueries(value: IQuery) {
-    setQuery(value);
+    setQuery(value?.query);
   }
+
+  /** run query with the mapped data */
   const handleRunQuery = () => {
-    switch (query?.index) {
-      case 1:
-        return setTableData(Customers);
-      case 2:
-        return setTableData(CustomersLimit);
-      case 3:
-        return setTableData(Products);
-      case 4:
-        return setTableData(Orders);
-      case 5:
-        return setTableData(Territory);
-      default:
-        return setTableData(Customers);
+    const filteredData = AvailableTable.filter((val) => val?.query === query);
+    if (filteredData?.length) {
+      setTableData(filteredData[0].table);
+    } else {
+      /** if it doesnt match with any of the predefined queries then send a random table */
+      const randomIndex = Math.floor(Math.random() * AvailableTable.length);
+      setTableData(AvailableTable[randomIndex].table);
     }
   };
 
+  /** reset everything once reset is clicked */
   function handleReset() {
-    setQuery((prev: any) => ({
-      ...prev,
-      query: "",
-    }));
-
+    setQuery("");
     setTableData([]);
   }
   return (
@@ -56,15 +51,20 @@ function App() {
           <PredefinedQueries handleAvailableQueries={handleAvailableQueries} />
           <div className="container__content__text-editor--left">
             <div className="sql-title">SQL QUERY</div>
-            <TextEditor content={query?.query} handleChange={handleChange} />
+
+            {/* Text editor component */}
+            <TextEditor content={query} handleChange={handleChange} />
+
             <div className="container__content__text-editor--left--query-actions">
+              {/* Action buttons like run query or reset */}
               <ActionButtons
-                query={query?.query as any}
+                query={query}
                 handleRunQuery={handleRunQuery}
                 handleReset={handleReset}
               />
             </div>
             <div className="container__content__text-editor--left--table-output">
+              {/* generic table structure */}
               {tableData?.length ? (
                 <TableStructure
                   minWidth={650}
@@ -73,6 +73,7 @@ function App() {
                 />
               ) : (
                 <div>
+                  {/* empty placeholder message */}
                   <h2 className="container__content__text-editor--left--table-output--info">
                     Ready to fill this space with your SQL genius? Let's see
                     those queries!
@@ -82,6 +83,7 @@ function App() {
             </div>
           </div>
           <div className="container__content__text-editor--right">
+            {/* list of tables available for query run */}
             <AvailableTableList />
           </div>
         </div>

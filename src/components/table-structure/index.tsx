@@ -1,3 +1,4 @@
+import React from "react";
 import style from "./style.module.scss";
 import {
   TableContainer,
@@ -7,8 +8,6 @@ import {
   TableRow,
   TableCell,
   TableBody,
-  tableCellClasses,
-  styled,
 } from "@mui/material";
 const TableStructure = ({
   tableData,
@@ -24,10 +23,15 @@ const TableStructure = ({
     <div className={style["container"]}>
       {heading && <h2>{heading}</h2>}
       <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
-        <Table  size="small" stickyHeader sx={{ minWidth }} aria-label="simple table">
+        <Table
+          size="small"
+          stickyHeader
+          sx={{ minWidth }}
+          aria-label="simple table"
+        >
           <TableHead>
             <TableRow>
-              {header.map((cell,index) => {
+              {header.map((cell, index) => {
                 return (
                   <TableCell
                     style={{
@@ -58,4 +62,4 @@ const TableStructure = ({
   );
 };
 
-export default TableStructure;
+export default React.memo(TableStructure);

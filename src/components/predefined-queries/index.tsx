@@ -1,6 +1,6 @@
 import style from "./style.module.scss";
-import { Queries } from "../../shared/mocks/predefined-queries";
 import { IQuery } from "../../shared/models/TableStructure";
+import { AvailableTable } from "../../shared/mocks/TableData";
 const PredefinedQueries = ({
   handleAvailableQueries,
 }: {
@@ -9,7 +9,7 @@ const PredefinedQueries = ({
   return (
     <div className={style["container"]}>
       <h2 className={style["title"]}>Available Queries</h2>
-      {Queries.map(({ query, index }) => {
+      {AvailableTable.map(({ query, index }) => {
         return (
           <div
             className={style["list"]}

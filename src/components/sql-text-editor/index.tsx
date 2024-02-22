@@ -1,3 +1,4 @@
+import React from "react";
 import style from "./style.module.scss";
 const TextEditor = ({ content, handleChange }: any) => {
   return (
@@ -10,4 +11,4 @@ const TextEditor = ({ content, handleChange }: any) => {
   );
 };
 
-export default TextEditor;
+export default React.memo(TextEditor);

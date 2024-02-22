@@ -1,5 +1,16 @@
-export interface ITableHeader {}
 export interface IQuery {
   query: string;
   index: number;
+}
+
+export interface ITableQueryData {
+  table: any[];
+  label: string;
+  query: string;
+  index: number;
+}
+export interface IActionButtons {
+  query: string;
+  handleRunQuery: () => void;
+  handleReset: () => void;
 }

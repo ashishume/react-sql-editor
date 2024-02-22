@@ -1,16 +1,16 @@
 .container {
-  max-width: 350px;
-  width: 320px;
+  max-width: 21.875rem;
+  width: 20rem;
   .title {
     text-align: center;
   }
   .list {
     font-family: "Courier New", Courier, monospace;
-    padding: 17px 0px;
+    padding: 1.063rem 0px;
     border-bottom: solid 1px rgba(128, 128, 128, 0.368627451);
     text-align: center;
     &:hover {
-      background-color: rgba(95, 158, 160, 0.432);
+      background-color: rgb(211, 220, 230);
       cursor: pointer;
     }
   }

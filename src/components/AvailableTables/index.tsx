@@ -6,10 +6,12 @@ const AvailableTableList = () => {
   return (
     <>
       <h2>Available Tables</h2>
-      {AvailableTable.map(({ table, label }) => {
+      {AvailableTable.map(({ table, index }) => {
         return (
-          <Fragment key={label}>
-            <TableStructure minWidth={0} tableData={table} />
+          <Fragment key={index}>
+            {index !== 2 ? (
+              <TableStructure minWidth={0} tableData={table} />
+            ) : null}
             <br />
           </Fragment>
         );
@@ -18,4 +20,4 @@ const AvailableTableList = () => {
   );
 };
 
-export default AvailableTableList;
+export default React.memo(AvailableTableList);

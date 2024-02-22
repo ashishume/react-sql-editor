@@ -1,12 +1,8 @@
 import { Button } from "@mui/material";
 import React from "react";
 import { SVGs } from "../../shared/images/images-list";
-import { IQuery } from "../../shared/models/TableStructure";
-export interface IActionButtons {
-  query: string;
-  handleRunQuery: () => void;
-  handleReset: () => void;
-}
+import { IActionButtons } from "../../shared/models/TableStructure";
+
 const ActionButtons = ({
   query,
   handleRunQuery,
@@ -36,4 +32,4 @@ const ActionButtons = ({
   );
 };
 
-export default ActionButtons;
+export default React.memo(ActionButtons);
