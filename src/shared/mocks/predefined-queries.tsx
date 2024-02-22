@@ -6,7 +6,7 @@ export const Queries: IQuery[] = [
     index: 1,
   },
   {
-    query: "select contact_name, address from customers limit 18;",
+    query: "select customerID, companyName, contact_name from customers limit 18;",
     index: 2,
   },
   {

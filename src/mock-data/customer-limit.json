@@ -1,0 +1,52 @@
+[
+  {
+    "customerID": "ALFKI",
+    "companyName": "Alfreds Futterkiste",
+    "contactName": "Maria Anders"
+  },
+  {
+    "customerID": "ANATR",
+    "companyName": "Ana Trujillo Emparedados y helados",
+    "contactName": "Ana Trujillo"
+  },
+  {
+    "customerID": "ANTON",
+    "companyName": "Antonio Moreno Taquería",
+    "contactName": "Antonio Moreno"
+  },
+  {
+    "customerID": "AROUT",
+    "companyName": "Around the Horn",
+    "contactName": "Thomas Hardy"
+  },
+  {
+    "customerID": "BERGS",
+    "companyName": "Berglunds snabbköp",
+    "contactName": "Christina Berglund"
+  },
+  {
+    "customerID": "BLAUS",
+    "companyName": "Blauer See Delikatessen",
+    "contactName": "Hanna Moos"
+  },
+  {
+    "customerID": "BLONP",
+    "companyName": "Blondesddsl père et fils",
+    "contactName": "Frédérique Citeaux"
+  },
+  {
+    "customerID": "BOLID",
+    "companyName": "Bólido Comidas preparadas",
+    "contactName": "Martín Sommer"
+  },
+  {
+    "customerID": "BONAP",
+    "companyName": "Bon app'",
+    "contactName": "Laurence Lebihan"
+  },
+  {
+    "customerID": "BOTTM",
+    "companyName": "Bottom-Dollar Markets",
+    "contactName": "Elizabeth Lincoln"
+  }
+]

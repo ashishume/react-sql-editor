@@ -1,26 +1,45 @@
 import TableStructure from "./components/table-structure";
 import Territory from "./mock-data/territory.json";
+import Customers from "./mock-data/customers.json";
+import CustomersLimit from "./mock-data/customer-limit.json";
+import Orders from "./mock-data/orders.json";
+import Products from "./mock-data/products.json";
 import TextEditor from "./components/sql-text-editor";
 import { useState } from "react";
 import "./style.scss";
-import playBtn from "./assets/play-btn.svg";
 import { Button } from "@mui/material";
 import PredefinedQueries from "./components/predefined-queries";
 import { IQuery } from "./shared/models/TableStructure";
 import { SVGs } from "./shared/images/images-list";
 function App() {
-  const [query, setQuery] = useState("");
-  const [isSubmitted, setSubmission] = useState(false);
+  const [query, setQuery] = useState({} as IQuery);
+  const [tableData, setTableData] = useState([] as any);
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
-    setQuery(event.target.value);
+    setQuery({
+      query: event.target.value,
+      index: 10, // some random number
+    });
   }
   function handleAvailableQueries(value: IQuery) {
-    setQuery(value.query);
+    setQuery(value);
   }
-  function handleRunQuery() {
-    setSubmission(true);
-  }
+  const handleRunQuery = () => {
+    switch (query.index) {
+      case 1:
+        return setTableData(Customers);
+      case 2:
+        return setTableData(CustomersLimit);
+      case 3:
+        return setTableData(Products);
+      case 4:
+        return setTableData(Orders);
+      case 5:
+        return setTableData(Territory);
+      default:
+        return setTableData(Customers);
+    }
+  };
   return (
     <div className="container">
       <div className="container__content">
@@ -28,32 +47,38 @@ function App() {
           <PredefinedQueries handleAvailableQueries={handleAvailableQueries} />
           <div className="container__content__text-editor--left">
             <div className="sql-title">SQL QUERY</div>
-            <TextEditor content={query} handleChange={handleChange} />
+            <TextEditor content={query.query} handleChange={handleChange} />
             <div className="container__content__text-editor--left--query-actions">
               <Button
                 variant="outlined"
                 color="success"
-                disabled={!query}
+                disabled={!query.query}
                 onClick={handleRunQuery}
               >
-                {SVGs({ color: !query ? "lightgray" : "green" }).PlayButton}
+                {
+                  SVGs({ color: !query.query ? "lightgray" : "green" })
+                    .PlayButton
+                }
                 Run Query
               </Button>
               <Button
                 variant="outlined"
                 color="error"
-                disabled={!query}
-                onClick={() => setQuery("")}
+                disabled={!query.query}
+                onClick={() => setQuery({} as IQuery)}
               >
-                {SVGs({ color: !query ? "lightgray" : "darkred" }).ResetButton}
+                {
+                  SVGs({ color: !query.query ? "lightgray" : "darkred" })
+                    .ResetButton
+                }
                 Reset
               </Button>
             </div>
             <div className="container__content__text-editor--left--table-output">
-              {isSubmitted && (
+              {tableData?.length && (
                 <TableStructure
                   minWidth={650}
-                  tableData={Territory}
+                  tableData={tableData}
                   heading="Output"
                 />
               )}
