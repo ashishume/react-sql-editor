@@ -1,10 +1,13 @@
 import style from "./style.module.scss";
-import { IQuery } from "../../shared/models/TableStructure";
+import { IQuery, ITableQueryData } from "../../shared/models/TableStructure";
 import { AvailableTable } from "../../shared/mocks/TableData";
+import React from "react";
 const PredefinedQueries = ({
   handleAvailableQueries,
+  recentlyUsedQueries,
 }: {
-  handleAvailableQueries: ({}: IQuery) => void;
+  handleAvailableQueries: ({}: string) => void;
+  recentlyUsedQueries: string[];
 }) => {
   return (
     <div className={style["container"]}>
@@ -14,14 +17,30 @@ const PredefinedQueries = ({
           <div
             className={style["list"]}
             key={index}
-            onClick={() => handleAvailableQueries({ query, index })}
+            onClick={() => handleAvailableQueries(query)}
           >
             {query}
           </div>
         );
       })}
+      <div>
+        <h2>Recently used queries</h2>
+        {recentlyUsedQueries?.length
+          ? recentlyUsedQueries.map((query, index) => {
+              return (
+                <div
+                  className={style["list"]}
+                  key={index}
+                  onClick={() => handleAvailableQueries(query)}
+                >
+                  {query}
+                </div>
+              );
+            })
+          : null}
+      </div>
     </div>
   );
 };
 
-export default PredefinedQueries;
+export default React.memo(PredefinedQueries);

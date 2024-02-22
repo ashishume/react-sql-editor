@@ -3,13 +3,14 @@ import TextEditor from "./components/sql-text-editor";
 import { useState } from "react";
 import "./App.scss";
 import PredefinedQueries from "./components/predefined-queries";
-import { IQuery } from "./shared/models/TableStructure";
+import { ITableQueryData } from "./shared/models/TableStructure";
 import AvailableTableList from "./components/AvailableTables";
 import ActionButtons from "./components/ActionButtons";
 import { AvailableTable } from "./shared/mocks/TableData";
 function App() {
   const [query, setQuery] = useState("");
   const [tableData, setTableData] = useState([] as any);
+  const [recentlyUsedQueries, setRecentlyUsedQueries] = useState([] as any);
 
   /**
    * on input field change change the value
@@ -23,20 +24,39 @@ function App() {
    * set the value of the predefined queries to the input field
    * @param value
    */
-  function handleAvailableQueries(value: IQuery) {
-    setQuery(value?.query);
+  function handleAvailableQueries(query: string) {
+    setQuery(query);
   }
 
   /** run query with the mapped data */
   const handleRunQuery = () => {
+    /** find the predefined query */
     const filteredData = AvailableTable.filter((val) => val?.query === query);
+    let result: ITableQueryData;
+    /** user input query */
+    let inputQuery = "";
     if (filteredData?.length) {
-      setTableData(filteredData[0].table);
+      result = filteredData[0];
+      inputQuery = filteredData[0].query;
     } else {
       /** if it doesnt match with any of the predefined queries then send a random table */
       const randomIndex = Math.floor(Math.random() * AvailableTable.length);
-      setTableData(AvailableTable[randomIndex].table);
+      result = AvailableTable[randomIndex];
+      inputQuery = query;
     }
+
+    /** update the user input query */
+    setRecentlyUsedQueries((prev: string[]) => {
+      if (!prev.some((item) => item === inputQuery)) {
+        // If it doesn't exist, add the new query
+        return [...prev, inputQuery];
+      }
+      // If it already exists, return the previous state unchanged
+      return prev;
+    });
+
+    /** update the table data */
+    if (result) setTableData(result?.table);
   };
 
   /** reset everything once reset is clicked */
@@ -48,7 +68,11 @@ function App() {
     <div className="container">
       <div className="container__content">
         <div className="container__content__text-editor">
-          <PredefinedQueries handleAvailableQueries={handleAvailableQueries} />
+          {/* predefined queries */}
+          <PredefinedQueries
+            recentlyUsedQueries={recentlyUsedQueries}
+            handleAvailableQueries={handleAvailableQueries}
+          />
           <div className="container__content__text-editor--left">
             <div className="sql-title">SQL QUERY</div>
 
