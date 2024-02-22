@@ -1,12 +1,14 @@
-import TableStructure from "./components/table-structure";
-import TextEditor from "./components/sql-text-editor";
-import { useState } from "react";
+import { Suspense, lazy, useState } from "react";
 import "./App.scss";
-import PredefinedQueries from "./components/predefined-queries";
 import { ITableQueryData } from "./shared/models/TableStructure";
-import AvailableTableList from "./components/AvailableTables";
-import ActionButtons from "./components/ActionButtons";
 import { AvailableTable } from "./shared/mocks/TableData";
+import Spinner from "./components/Spinner";
+import ActionButtons from "./components/ActionButtons";
+import TextEditor from "./components/sql-text-editor";
+const TableStructure = lazy(() => import("./components/table-structure"));
+const AvailableTableList = lazy(() => import("./components/AvailableTables"));
+const PredefinedQueries = lazy(() => import("./components/predefined-queries"));
+
 function App() {
   const [query, setQuery] = useState("");
   const [tableData, setTableData] = useState([] as any);
@@ -65,16 +67,17 @@ function App() {
     setTableData([]);
   }
   return (
-
     // TODO: make a json to csv download button
     <div className="container">
       <div className="container__content">
         <div className="container__content__text-editor">
           {/* predefined queries */}
-          <PredefinedQueries
-            recentlyUsedQueries={recentlyUsedQueries}
-            handleAvailableQueries={handleAvailableQueries}
-          />
+          <Suspense fallback={<Spinner />}>
+            <PredefinedQueries
+              recentlyUsedQueries={recentlyUsedQueries}
+              handleAvailableQueries={handleAvailableQueries}
+            />
+          </Suspense>
           <div className="container__content__text-editor--left">
             <div className="sql-title">SQL QUERY</div>
 
@@ -92,11 +95,13 @@ function App() {
             <div className="container__content__text-editor--left--table-output">
               {/* generic table structure */}
               {tableData?.length ? (
-                <TableStructure
-                  minWidth={650}
-                  tableData={tableData}
-                  heading="Output"
-                />
+                <Suspense fallback={<Spinner />}>
+                  <TableStructure
+                    minWidth={650}
+                    tableData={tableData}
+                    heading="Output"
+                  />
+                </Suspense>
               ) : (
                 <div>
                   {/* empty placeholder message */}
@@ -110,7 +115,9 @@ function App() {
           </div>
           <div className="container__content__text-editor--right">
             {/* list of tables available for query run */}
-            <AvailableTableList />
+            <Suspense fallback={<Spinner />}>
+              <AvailableTableList />
+            </Suspense>
           </div>
         </div>
       </div>

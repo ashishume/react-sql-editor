@@ -27,6 +27,7 @@ You can view the deployed version here: ['my link']('text link')
 ## Performance & Optimization
 - I chose a minimal set of dependencies to keep the bundle size as low as possible.
 - Heavy components have been memoized to reduce potential re-renders.
+- React lazy has been used to improve the load time
 
 
 ## Dependencies

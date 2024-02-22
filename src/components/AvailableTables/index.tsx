@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Suspense } from "react";
 import { AvailableTable } from "../../shared/mocks/TableData";
-import TableStructure from "../table-structure";
-
+import Spinner from "../Spinner";
+const TableStructure = React.lazy(() => import("../table-structure"));
 const AvailableTableList = () => {
   return (
     <>
@@ -10,7 +10,9 @@ const AvailableTableList = () => {
         return (
           <Fragment key={index}>
             {index !== 2 ? (
-              <TableStructure minWidth={0} tableData={table} />
+              <Suspense fallback={<Spinner />}>
+                <TableStructure minWidth={0} tableData={table} />
+              </Suspense>
             ) : null}
             <br />
           </Fragment>
