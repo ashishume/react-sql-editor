@@ -12,7 +12,7 @@ import PredefinedQueries from "./components/predefined-queries";
 import { IQuery } from "./shared/models/TableStructure";
 import { SVGs } from "./shared/images/images-list";
 function App() {
-  const [query, setQuery] = useState({} as IQuery);
+  const [query, setQuery] = useState({} as IQuery | null);
   const [tableData, setTableData] = useState([] as any);
 
   function handleChange(event: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -25,7 +25,7 @@ function App() {
     setQuery(value);
   }
   const handleRunQuery = () => {
-    switch (query.index) {
+    switch (query?.index) {
       case 1:
         return setTableData(Customers);
       case 2:
@@ -47,16 +47,16 @@ function App() {
           <PredefinedQueries handleAvailableQueries={handleAvailableQueries} />
           <div className="container__content__text-editor--left">
             <div className="sql-title">SQL QUERY</div>
-            <TextEditor content={query.query} handleChange={handleChange} />
+            <TextEditor content={query?.query} handleChange={handleChange} />
             <div className="container__content__text-editor--left--query-actions">
               <Button
                 variant="outlined"
                 color="success"
-                disabled={!query.query}
+                disabled={!query?.query}
                 onClick={handleRunQuery}
               >
                 {
-                  SVGs({ color: !query.query ? "lightgray" : "green" })
+                  SVGs({ color: !query?.query ? "lightgray" : "green" })
                     .PlayButton
                 }
                 Run Query
@@ -64,11 +64,16 @@ function App() {
               <Button
                 variant="outlined"
                 color="error"
-                disabled={!query.query}
-                onClick={() => setQuery({} as IQuery)}
+                disabled={!query?.query}
+                onClick={() =>
+                  setQuery((prev: any) => ({
+                    ...prev,
+                    query: "",
+                  }))
+                }
               >
                 {
-                  SVGs({ color: !query.query ? "lightgray" : "darkred" })
+                  SVGs({ color: !query?.query ? "lightgray" : "darkred" })
                     .ResetButton
                 }
                 Reset
