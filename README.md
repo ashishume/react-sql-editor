@@ -1,7 +1,7 @@
 # Frontend Task - SQL Query (React/TypeScript)
 
 ## Deployment
-You can view the deployed version here: ['my link']('text link')
+You can view the deployed version here: [https://react-sql-editor-gilt.vercel.app](https://react-sql-editor-gilt.vercel.app/)
 
 ### How to use
 1. Visit the deployed site (or clone locally and run `npm run dev`)
