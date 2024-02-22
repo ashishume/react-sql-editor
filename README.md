@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Frontend Task - SQL Query (React/TypeScript)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Deployment
+You can view the deployed version here: ['my link']('text link')
 
-## Available Scripts
+### How to use
+1. Visit the deployed site (or clone locally and run `npm run dev`)
 
-In the project directory, you can run:
+## Prompt
+> Create, design and implement a web-based application capable of running SQL queries and displaying the results of said query. The application must include a space which accepts SQL queries in the form of user inputs, then runs the given query, and displays the result within the application
 
-### `npm start`
+## Approach
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Ideation
+- As the prompt is about fetching query data, one of the design decisions, I looked at online SQL editors as design references, as they have a similar purpose.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Enhancements for user experience
+- Users should be able to access the results of any queries they have run.
+- Users can see the recently used queries on the left panel
 
-### `npm test`
+### Features
+- Queries are listed on the left side
+- The SQL query is a textarea, with validation to ensure you enter some text when you click "Run Query"
+- Material UI table has been used for the loading of the query data
+- The queries run are mocked, with a random probability of the mock response erroring out. This is intentional for testing purposes.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Performance & Optimization
+- I chose a minimal set of dependencies to keep the bundle size as low as possible.
+- Heavy components have been memoized to reduce potential re-renders.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Dependencies
+- This project is built with **React** & TypeScript
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+The following libraries are used:
+- **SCSS** for the styling.
+- **usestate** for state management.
+- **Material UI Table** for table rendering.
