@@ -1,8 +1,3 @@
-export interface IQuery {
-  query: string;
-  index: number;
-}
-
 export interface ITableQueryData {
   table: any[];
   label: string;

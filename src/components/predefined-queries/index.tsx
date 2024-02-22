@@ -1,5 +1,4 @@
 import style from "./style.module.scss";
-import { IQuery, ITableQueryData } from "../../shared/models/TableStructure";
 import { AvailableTable } from "../../shared/mocks/TableData";
 import React from "react";
 const PredefinedQueries = ({
