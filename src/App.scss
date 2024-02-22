@@ -20,13 +20,18 @@
         }
         &--table-output {
           overflow-y: auto;
+          &--info {
+            font-weight: 400;
+            color: #9f9f9fbd;
+            text-align: center;
+            font-size: 26px;
+          }
         }
       }
       &--right {
         flex: 2;
+        max-width: 450px;
       }
-    }
-    &__table-structure {
     }
   }
 }

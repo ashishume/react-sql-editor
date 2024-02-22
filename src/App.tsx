@@ -6,11 +6,11 @@ import Orders from "./mock-data/orders.json";
 import Products from "./mock-data/products.json";
 import TextEditor from "./components/sql-text-editor";
 import { useState } from "react";
-import "./style.scss";
-import { Button } from "@mui/material";
+import "./App.scss";
 import PredefinedQueries from "./components/predefined-queries";
 import { IQuery } from "./shared/models/TableStructure";
-import { SVGs } from "./shared/images/images-list";
+import AvailableTableList from "./components/AvailableTables";
+import ActionButtons from "./components/ActionButtons";
 function App() {
   const [query, setQuery] = useState({} as IQuery | null);
   const [tableData, setTableData] = useState([] as any);
@@ -40,6 +40,15 @@ function App() {
         return setTableData(Customers);
     }
   };
+
+  function handleReset() {
+    setQuery((prev: any) => ({
+      ...prev,
+      query: "",
+    }));
+
+    setTableData([]);
+  }
   return (
     <div className="container">
       <div className="container__content">
@@ -49,56 +58,33 @@ function App() {
             <div className="sql-title">SQL QUERY</div>
             <TextEditor content={query?.query} handleChange={handleChange} />
             <div className="container__content__text-editor--left--query-actions">
-              <Button
-                variant="outlined"
-                color="success"
-                disabled={!query?.query}
-                onClick={handleRunQuery}
-              >
-                {
-                  SVGs({ color: !query?.query ? "lightgray" : "green" })
-                    .PlayButton
-                }
-                Run Query
-              </Button>
-              <Button
-                variant="outlined"
-                color="error"
-                disabled={!query?.query}
-                onClick={() =>
-                  setQuery((prev: any) => ({
-                    ...prev,
-                    query: "",
-                  }))
-                }
-              >
-                {
-                  SVGs({ color: !query?.query ? "lightgray" : "darkred" })
-                    .ResetButton
-                }
-                Reset
-              </Button>
+              <ActionButtons
+                query={query?.query as any}
+                handleRunQuery={handleRunQuery}
+                handleReset={handleReset}
+              />
             </div>
             <div className="container__content__text-editor--left--table-output">
-              {tableData?.length && (
+              {tableData?.length ? (
                 <TableStructure
                   minWidth={650}
                   tableData={tableData}
                   heading="Output"
                 />
+              ) : (
+                <div>
+                  <h2 className="container__content__text-editor--left--table-output--info">
+                    Ready to fill this space with your SQL genius? Let's see
+                    those queries!
+                  </h2>
+                </div>
               )}
             </div>
           </div>
           <div className="container__content__text-editor--right">
-            <TableStructure minWidth={0} tableData={Territory} />
-            <br />
-            <TableStructure minWidth={0} tableData={Territory} />
-            <br />
-            <TableStructure minWidth={0} tableData={Territory} />
-            <br />
+            <AvailableTableList />
           </div>
         </div>
-        <div className="container__content__table-structure"></div>
       </div>
     </div>
   );
