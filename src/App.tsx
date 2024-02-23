@@ -99,6 +99,7 @@ function App() {
                     minWidth={650}
                     tableData={tableData}
                     heading="Output"
+                    showDownloadCSV={true}
                   />
                 </Suspense>
               ) : (

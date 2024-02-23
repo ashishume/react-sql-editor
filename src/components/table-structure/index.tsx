@@ -14,10 +14,12 @@ const TableStructure = ({
   tableData,
   heading,
   minWidth,
+  showDownloadCSV = false,
 }: {
   tableData: any;
   heading?: string;
   minWidth: number;
+  showDownloadCSV?: boolean;
 }) => {
   const header = Object.keys(tableData[0]);
   return (
@@ -25,7 +27,9 @@ const TableStructure = ({
       <div className={style["container"]}>
         <div className={style["header-container"]}>
           {heading && <div className={style["heading"]}>{heading}</div>}
-          <DownloadCSV data={tableData} headers={Object.keys(tableData[0])} />
+          {showDownloadCSV ? (
+            <DownloadCSV data={tableData} headers={Object.keys(tableData[0])} />
+          ) : null}
         </div>
         <TableContainer component={Paper} sx={{ maxHeight: 440 }}>
           <Table
