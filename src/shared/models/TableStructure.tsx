@@ -8,4 +8,5 @@ export interface IActionButtons {
   query: string;
   handleRunQuery: () => void;
   handleReset: () => void;
+  data: any[];
 }

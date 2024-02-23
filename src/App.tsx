@@ -67,7 +67,6 @@ function App() {
     setTableData([]);
   }
   return (
-    // TODO: make a json to csv download button
     <div className="container">
       <div className="container__content">
         <div className="container__content__text-editor">
@@ -90,6 +89,7 @@ function App() {
                 query={query}
                 handleRunQuery={handleRunQuery}
                 handleReset={handleReset}
+                data={tableData}
               />
             </div>
             <div className="container__content__text-editor--left--table-output">
