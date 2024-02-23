@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 
 const DownloadCSV = ({ data, headers }: { data: any; headers: any }) => {
-  function downloadCsv(data: string, filename: string): void {
+  function downloadCsv(filename: string): void {
     // join the data with comma
     const header = Object.keys(headers).join(",");
     const rows = (data as any)
@@ -35,7 +35,7 @@ const DownloadCSV = ({ data, headers }: { data: any; headers: any }) => {
       <Button
         variant="outlined"
         color="info"
-        onClick={() => downloadCsv(data, headers)}
+        onClick={() => downloadCsv("sql-file")}
       >
         Download CSV
       </Button>
