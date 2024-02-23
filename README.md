@@ -23,6 +23,7 @@ You can view the deployed version here: [https://react-sql-editor-gilt.vercel.ap
 - The SQL query is a textarea, with validation to ensure you enter some text when you click "Run Query"
 - Material UI table has been used for the loading of the query data
 - The queries run are mocked, with a random probability of the mock response erroring out. This is intentional for testing purposes.
+- User can download the CSV format of the output table
 
 ## Performance & Optimization
 - I chose a minimal set of dependencies to keep the bundle size as low as possible.
@@ -37,3 +38,8 @@ The following libraries are used:
 - **SCSS** for the styling.
 - **usestate** for state management.
 - **Material UI Table** for table rendering.
+
+## Performance screenshots
+
+![alt text](assets/image.png)
+![alt text](assets/image-2.png)
