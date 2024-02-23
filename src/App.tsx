@@ -89,7 +89,6 @@ function App() {
                 query={query}
                 handleRunQuery={handleRunQuery}
                 handleReset={handleReset}
-                data={tableData}
               />
             </div>
             <div className="container__content__text-editor--left--table-output">

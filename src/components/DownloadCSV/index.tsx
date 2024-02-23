@@ -34,7 +34,7 @@ const DownloadCSV = ({ data, headers }: { data: any; headers: any }) => {
     <>
       <Button
         variant="outlined"
-        color="success"
+        color="info"
         onClick={() => downloadCsv(data, headers)}
       >
         Download CSV

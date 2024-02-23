@@ -2,3 +2,14 @@
   background-color: #fff;
   max-width: 69.375rem;
 }
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.563rem;
+}
+.heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
