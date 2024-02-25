@@ -24,6 +24,8 @@ You can view the deployed version here: [https://react-sql-editor-gilt.vercel.ap
 - Material UI table has been used for the loading of the query data
 - The queries run are mocked, with a random probability of the mock response erroring out. This is intentional for testing purposes.
 - User can download the CSV format of the output table
+- On typing your own queries it would return random tables
+- On right hand side it shows all the available tables from which query is being iterated
 
 ## Performance & Optimization
 - I chose a minimal set of dependencies to keep the bundle size as low as possible.

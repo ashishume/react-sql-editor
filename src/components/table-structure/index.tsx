@@ -42,14 +42,7 @@ const TableStructure = ({
               <TableRow>
                 {header.map((cell, index) => {
                   return (
-                    <TableCell
-                      style={{
-                        background: "#d3dce6",
-                        color: "#25265e",
-                        fontWeight: "bold",
-                      }}
-                      key={index}
-                    >
+                    <TableCell className={style["table-header"]} key={index}>
                       {cell}
                     </TableCell>
                   );

@@ -5,6 +5,7 @@ import { AvailableTable } from "./shared/mocks/TableData";
 import Spinner from "./components/Spinner";
 import ActionButtons from "./components/ActionButtons";
 import TextEditor from "./components/sql-text-editor";
+/** lazy loaded components to make initial load faster */
 const TableStructure = lazy(() => import("./components/table-structure"));
 const AvailableTableList = lazy(() => import("./components/AvailableTables"));
 const PredefinedQueries = lazy(() => import("./components/predefined-queries"));
